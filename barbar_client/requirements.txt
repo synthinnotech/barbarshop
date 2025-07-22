@@ -1,0 +1,58 @@
+If you/'re using `Color.fromARGB(255, 0, 106, 103)` (a deep **teal** or **dark cyan**) as the **base color** for your barbershop app, it's a great choice — it's bold, modern, and gender-neutral.
+
+To build a **visually appealing color palette** around this, you should include:
+
+---
+
+### 🎨 **Color Palette Suggestions**
+
+#### ✅ 1. **Primary (Base) Color**
+
+* `Color(0xFF006A67)` — your base color.
+
+#### ✅ 2. **Accent / Highlight Colors**
+
+These are used for **buttons, active elements, icons**, etc.
+
+* **Warm Orange**: `Color(0xFFFFA726)` - great contrast for CTAs like "Book Now"
+* **Light Teal**: `Color(0xFF26A69A)` - a brighter tone of your base
+* **Amber / Gold**: `Color(0xFFFFC107)` - perfect for stars, ratings, and VIP features
+
+#### ✅ 3. **Neutral Colors**
+
+Used for **backgrounds, text, and disabled states**
+
+* **Background**: `Color(0xFFF5F5F5)` (light grey) or `Colors.white`
+* **Text Primary**: `Color(0xFF212121)` (almost black)
+* **Text Secondary**: `Color(0xFF757575)` (muted grey)
+* **Divider**: `Color(0xFFE0E0E0)` (light grey line)
+
+#### ✅ 4. **Error/Alert**
+
+* **Red**: `Color(0xFFE53935)` - for form validation or alerts
+
+---
+
+### 🧠 **UI Combinations Example**
+
+| Element         | Suggested Color              |
+| --------------- | ---------------------------- |
+| AppBar          | Base: `Color(0xFF006A67)`    |
+| Button          | Accent: `Color(0xFFFFA726)`  |
+| TextButton      | Accent: `Color(0xFF26A69A)`  |
+| Card Background | `Colors.white`               |
+| Icons           | `Color(0xFF006A67)` or white |
+| Disabled Button | `Color(0xFFBDBDBD)`          |
+| Background      | `Color(0xFFF5F5F5)`          |
+
+---
+
+### 🌙 Optional Dark Theme
+
+* Background: `Color(0xFF121212)`
+* Base Color: `Color(0xFF00BFA5)`
+* Text: `Color(0xFFE0E0E0)`
+
+---
+
+Want me to generate a full Flutter `ThemeData` using these suggestions?
