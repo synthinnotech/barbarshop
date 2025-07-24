@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class ThemeController {
   static final Color baseColor = const Color.fromARGB(255, 0, 106, 103);
+  static final Color amber = Color(0xFFFFA726);
 
   static final FilledButtonThemeData _filledButtonThemeData =
       FilledButtonThemeData(
