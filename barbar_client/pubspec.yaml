@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_riverpod: ^2.6.1
   get: ^4.7.2
+  carousel_slider: ^5.1.1
+  tabler_icons: ^2.5.0+1
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:

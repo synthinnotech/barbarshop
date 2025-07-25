@@ -1,7 +1,7 @@
-import 'package:barbar_client/controller/initialisation_controller.dart';
+import 'package:barbar_client/controller/login_and_init_controller.dart';
 import 'package:barbar_client/controller/theme_controller.dart';
 import 'package:barbar_client/local/initial_contents.dart';
-import 'package:barbar_client/view/login_screen.dart';
+import 'package:barbar_client/view/policy_and_terms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
@@ -12,7 +12,7 @@ class InitialScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size size = MediaQuery.of(context).size;
-    final index = ref.watch(InitialisationController.currentIndex);
+    final index = ref.watch(LoginAndInitController.currentIndex);
 
     return Scaffold(
       backgroundColor: ThemeController.baseColor,
@@ -84,7 +84,7 @@ class InitialScreen extends ConsumerWidget {
                         child: CircleAvatar(
                           radius: 5,
                           backgroundColor:
-                              i == index ? ThemeController.amber : Colors.white,
+                              i == index ? ThemeController.blue : Colors.white,
                         ),
                       ),
                   ],
@@ -94,33 +94,49 @@ class InitialScreen extends ConsumerWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            child: FilledButton(
-              onPressed: () {
-                if (index == 3) {
-                  Get.off(() => LoginScreen(), transition: Transition.fadeIn);
-                } else {
-                  ref
-                      .read(InitialisationController.currentIndex.notifier)
-                      .state += 1;
-                }
-              },
-              style: FilledButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: ThemeController.baseColor,
+      bottomNavigationBar: Container(
+        padding: EdgeInsets.all(10),
+        child: Row(
+          children: [
+            if (index != 3)
+              Expanded(
+                child: OutlinedButton(
+                  onPressed: () {
+                    Get.off(() => PolicyAndTerms(),
+                        transition: Transition.fadeIn);
+                  },
+                  child: Text(
+                    'Skip',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ),
               ),
-              child: Text(
-                index == 3 ? 'Get Started' : 'Next',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            SizedBox(width: 10),
+            Expanded(
+              child: FilledButton(
+                onPressed: () {
+                  if (index == 3) {
+                    Get.off(() => PolicyAndTerms(),
+                        transition: Transition.fadeIn);
+                  } else {
+                    ref
+                        .read(LoginAndInitController.currentIndex.notifier)
+                        .state += 1;
+                  }
+                },
+                style: FilledButton.styleFrom(
+                  backgroundColor: Colors.white,
+                  foregroundColor: ThemeController.baseColor,
+                ),
+                child: Text(
+                  index == 3 ? 'Get Started' : 'Next',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
