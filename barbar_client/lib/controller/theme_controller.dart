@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ThemeController {
   static final Color baseColor = const Color.fromARGB(255, 0, 106, 103);
@@ -29,21 +30,6 @@ class ThemeController {
     ),
   );
 
-  static final inputBorders = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(10),
-    borderSide: BorderSide(color: Colors.grey),
-  );
-
-  static InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
-    border: inputBorders,
-    enabledBorder: inputBorders,
-    focusedBorder: inputBorders,
-    errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: red),
-    ),
-  );
-
   static ThemeData lightTheme = ThemeData(
     primaryColor: baseColor,
     colorScheme: ColorScheme.fromSwatch().copyWith(
@@ -52,7 +38,7 @@ class ThemeController {
     ),
     filledButtonTheme: _filledButtonThemeData,
     outlinedButtonTheme: outlinedButtonThemeData,
-    inputDecorationTheme: inputDecorationTheme,
+    fontFamily: GoogleFonts.poppins().fontFamily,
   );
 
   static ThemeData darkTheme = ThemeData(
@@ -63,6 +49,6 @@ class ThemeController {
     ),
     filledButtonTheme: _filledButtonThemeData,
     outlinedButtonTheme: outlinedButtonThemeData,
-    inputDecorationTheme: inputDecorationTheme,
+    fontFamily: GoogleFonts.poppins().fontFamily,
   );
 }
