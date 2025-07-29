@@ -6,6 +6,13 @@ class InitialContents {
     'schedule.jpg'
   ];
 
+  static const headlines = [
+    'Fresh Looks, Fresh Vibes',
+    'Book. Sit. Style.',
+    'Barbershops That Impress',
+    'Your Time, Your Trim',
+  ];
+
   static const titles = [
     'Welcome to Barbars',
     'Book Your Barber in Seconds',
@@ -13,10 +20,17 @@ class InitialContents {
     'Stay on Schedule'
   ];
 
+  static const subtitles = [
+    'Your personal grooming companion',
+    'Faster, easier grooming at your fingertips',
+    'Find the best, rated by real clients',
+    'Your style, always on time'
+  ];
+
   static const body = [
-    'Book appointments with top-rated barbers near you. Skip the wait. Track your style. Stay sharp — anytime, anywhere.',
-    'Browse barbers, check availability, and schedule your appointment — all from your phone.',
-    'Find trusted barbers near you with ratings, reviews, and portfolios.',
-    'Never miss a trim. Get reminders for upcoming appointments and special offers.'
+    'Step into the world of modern grooming. Explore skilled barbers, personalized styles, and seamless experiences — all in one app.',
+    'Browse through top-rated barbers, check real-time availability, and book your next haircut in just a few taps.',
+    'View detailed profiles, ratings, reviews, and galleries of local barbershops to make informed grooming choices.',
+    'Receive automatic appointment reminders and exclusive deals so you\'ll never miss a trim or special offer.'
   ];
 }

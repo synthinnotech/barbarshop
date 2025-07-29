@@ -3,107 +3,195 @@ import 'package:barbar_client/controller/theme_controller.dart';
 import 'package:barbar_client/view/login_screen.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
+import 'package:animate_do/animate_do.dart';
 
 class PolicyAndTerms extends ConsumerWidget {
   const PolicyAndTerms({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Size size = MediaQuery.of(context).size;
-    bool agreed = ref.watch(LoginAndInitController.isAgreed);
+    final Size size = MediaQuery.of(context).size;
+    final bool agreed = ref.watch(LoginAndInitController.isAgreed);
 
     return Scaffold(
-      backgroundColor: ThemeController.baseColor,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.all(15),
-            constraints: BoxConstraints(minHeight: size.height - 50),
-            alignment: Alignment.bottomCenter,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(10)),
-                  clipBehavior: Clip.hardEdge,
-                  child: Image.asset('assets/images/start.jpg'),
-                ),
-                SizedBox(height: 25),
-                Text(
-                  'To continue using this app, User need to accept our Terms of Service and Privacy Policy. These outline how we collect, use, share and protect your data, and the rules for using this app. Please review these documents carefully. By accepting, you agree to comply with our terms and allow us to handle your data as described.',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.white),
-                ),
-                SizedBox(height: 15),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: agreed,
-                      activeColor: ThemeController.amber,
-                      onChanged: (val) {
-                        ref
-                            .read(LoginAndInitController.isAgreed.notifier)
-                            .state = val!;
-                      },
-                    ),
-                    SizedBox(width: 4),
-                    Builder(builder: (context) {
-                      TextStyle style1 = TextStyle(color: Colors.white);
-                      TextStyle style2 = TextStyle(
-                          color: const Color.fromARGB(255, 0, 255, 255));
-                      return Expanded(
-                        child: Text.rich(
-                          style: style1,
-                          TextSpan(
-                            text: 'I agreed to the ',
-                            children: [
-                              TextSpan(
-                                text: 'Privacy Policy ',
-                                style: style2,
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {},
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Color(0xFF101820),
+              Color(0xFF2A2D34),
+            ],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final isWide = size.width > size.height;
+              return SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                child: isWide
+                    ? ConstrainedBox(
+                        constraints:
+                            BoxConstraints(minHeight: size.height - 50),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.asset(
+                                  'assets/images/start.jpg',
+                                  height: size.height * 0.8,
+                                  fit: BoxFit.cover,
+                                )
+                                    .animate()
+                                    .fadeIn(duration: 600.ms)
+                                    .slideX(begin: -0.2, curve: Curves.easeOut),
                               ),
-                              TextSpan(text: 'and '),
-                              TextSpan(
-                                text: 'Terms & conditions.',
-                                style: style2,
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {},
-                              ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(width: 30),
+                            Expanded(
+                                child: _buildContent(context, ref, agreed)),
+                          ],
                         ),
-                      );
-                    }),
-                  ],
+                      )
+                    : ConstrainedBox(
+                        constraints:
+                            BoxConstraints(minHeight: size.height - 100),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleAvatar(
+                              radius: 100,
+                              backgroundImage:
+                                  AssetImage('assets/images/start.jpg'),
+                            ).animate().fadeIn(duration: 800.ms).scale(
+                                begin: const Offset(0.8, 0.8),
+                                curve: Curves.easeOut),
+                            const SizedBox(height: 30),
+                            _buildContent(context, ref, agreed),
+                          ],
+                        ),
+                      ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContent(BuildContext context, WidgetRef ref, bool agreed) {
+    return FadeInUp(
+      duration: const Duration(milliseconds: 700),
+      child: Container(
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Colors.white10.withAlpha(10),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Colors.white12),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              "Before you begin",
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 20),
+            const Text(
+              'To use this app, you must accept our Terms of Service and Privacy Policy. These describe how your data is used, stored, and protected.',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white70,
+                height: 1.6,
+              ),
+            ),
+            const SizedBox(height: 30),
+            Row(
+              children: [
+                Checkbox(
+                  value: agreed,
+                  onChanged: (val) {
+                    ref.read(LoginAndInitController.isAgreed.notifier).state =
+                        val!;
+                  },
+                  activeColor: ThemeController.amber,
+                  side: const BorderSide(color: Colors.white),
                 ),
-                SizedBox(height: 15),
-                SizedBox(
-                  width: double.infinity,
-                  child: FilledButton(
-                    onPressed: agreed
-                        ? () {
-                            Get.off(() => LoginScreen(),
-                                transition: Transition.fadeIn);
-                          }
-                        : null,
-                    style:
-                        FilledButton.styleFrom(backgroundColor: Colors.white),
-                    child: Text(
-                      'I Agreed',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color:
-                              agreed ? ThemeController.baseColor : Colors.grey),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: RichText(
+                    text: TextSpan(
+                      style: const TextStyle(color: Colors.white, fontSize: 14),
+                      children: [
+                        const TextSpan(text: 'I agree to the '),
+                        TextSpan(
+                          text: 'Privacy Policy',
+                          style: const TextStyle(
+                            color: Colors.cyanAccent,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()..onTap = () {},
+                        ),
+                        const TextSpan(text: ' and '),
+                        TextSpan(
+                          text: 'Terms & Conditions',
+                          style: const TextStyle(
+                            color: Colors.cyanAccent,
+                            decoration: TextDecoration.underline,
+                          ),
+                          recognizer: TapGestureRecognizer()..onTap = () {},
+                        ),
+                        const TextSpan(text: '.'),
+                      ],
                     ),
                   ),
                 ),
               ],
             ),
-          ),
+            const SizedBox(height: 30),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: agreed
+                    ? () {
+                        Get.off(() => const LoginScreen(),
+                            transition: Transition.fadeIn);
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: agreed ? Colors.white : Colors.white10,
+                  padding: const EdgeInsets.symmetric(vertical: 14),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                ),
+                child: Text(
+                  'I Agree',
+                  style: TextStyle(
+                    color: agreed
+                        ? ThemeController.baseColor
+                        : Colors.grey.shade400,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );

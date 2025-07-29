@@ -1,4 +1,3 @@
-import 'package:barbar_client/controller/app_controller.dart';
 import 'package:barbar_client/controller/theme_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -77,9 +76,22 @@ class HomeScreen extends StatelessWidget {
                   for (var i = 0; i < 10; i++)
                     Padding(
                       padding: const EdgeInsets.all(3),
-                      child: CircleAvatar(
-                        radius: 40,
-                        backgroundColor: ThemeController.baseColor,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundColor: ThemeController.baseColor,
+                          ),
+                          SizedBox(height: 5),
+                          Text(
+                            'Harish Raj',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   SizedBox(width: 5),
