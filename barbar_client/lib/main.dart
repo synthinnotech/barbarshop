@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Barbars',
+      title: 'Madurai Barbars',
       debugShowCheckedModeBanner: false,
       theme: ThemeController.lightTheme,
       darkTheme: ThemeController.darkTheme,

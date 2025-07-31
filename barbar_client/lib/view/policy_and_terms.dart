@@ -20,11 +20,11 @@ class PolicyAndTerms extends ConsumerWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              Color(0xFF101820),
-              Color(0xFF2A2D34),
+              ThemeController.baseColor,
+              ThemeController.secondary,
             ],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
@@ -49,7 +49,7 @@ class PolicyAndTerms extends ConsumerWidget {
                                 borderRadius: BorderRadius.circular(20),
                                 child: Image.asset(
                                   'assets/images/start.jpg',
-                                  height: size.height * 0.8,
+                                  height: size.height,
                                   fit: BoxFit.cover,
                                 )
                                     .animate()

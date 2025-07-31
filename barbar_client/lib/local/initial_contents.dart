@@ -14,7 +14,7 @@ class InitialContents {
   ];
 
   static const titles = [
-    'Welcome to Barbars',
+    'Welcome to Madurai Barbars',
     'Book Your Barber in Seconds',
     'Discover Top Barbershops Near You',
     'Stay on Schedule'

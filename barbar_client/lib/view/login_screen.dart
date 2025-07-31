@@ -100,6 +100,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            Expanded(
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  'assets/images/booking.jpg',
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
             Container(
               height: MediaQuery.of(context).viewInsets.bottom > 0 ? 250 : null,
               padding: EdgeInsets.all(20),
